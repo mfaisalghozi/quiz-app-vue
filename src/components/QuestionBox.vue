@@ -21,7 +21,7 @@
       </b-list-group>
 
       <b-button
-        variant="primary"
+        variant="secondary"
         @click="submitAnswer"
         :disabled="selectedIndex === null || answered"
       >
