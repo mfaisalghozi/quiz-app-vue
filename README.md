@@ -1,24 +1,20 @@
-# quiz
+# ✨Simple Quiz App
 
-## Project setup
-```
-npm install
-```
+## Setup Environment
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- Project setup
+  `npm install`
+- Compiles and hot-reloads for development
+  `npm run serve`
+- Compiles and minifies for production
+  `npm run build`
+- Lints and fixes files
+  `npm run lint`
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## API Info
 
-### Lints and fixes files
-```
-npm run lint
-```
+API hit : https://opentdb.com/api.php?amount=10&type=multiple
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).
