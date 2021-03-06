@@ -2,7 +2,10 @@
   <nav>
     <ul>
       <li>Fancy Quiz App</li>
-      <li>Counter : {{ numCorrect }}/{{ numTotal }}</li>
+      <li>
+        True Answer : <span class="correct">{{ numCorrect }}</span
+        >/{{ numTotal }}
+      </li>
     </ul>
   </nav>
 </template>
@@ -21,9 +24,16 @@ nav {
 ul {
   list-style-type: none;
   display: flex;
+  justify-content: center;
 }
 
 ul li {
-  margin: 0 15px;
+  margin: 0 45px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.correct {
+  color: green;
 }
 </style>

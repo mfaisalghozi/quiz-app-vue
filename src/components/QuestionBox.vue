@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="qb-middle">
     <b-jumbotron>
       <template #header>Question Box</template>
 
@@ -14,7 +14,7 @@
           v-for="(answer, index) in answers"
           :key="index"
           @click.prevent="selectAnswer(index)"
-          :class="[selectedIndex === index ? 'selected' : '']"
+          :class="answerClass(index)"
         >
           {{ answer }}
         </b-list-group-item>
@@ -27,7 +27,9 @@
       >
         Submit
       </b-button>
-      <b-button @click="next" variant="success">Next</b-button>
+      <b-button @click="next" variant="success" :disabled="answered == false"
+        >Next</b-button
+      >
     </b-jumbotron>
   </div>
 </template>
@@ -70,6 +72,9 @@ export default {
         this.currentQuestion.correct_answer,
       ];
       this.shuffledAnswers = us.shuffle(answers);
+      this.correctIndex = this.shuffledAnswers.indexOf(
+        this.currentQuestion.correct_answer
+      );
     },
 
     submitAnswer() {
@@ -79,6 +84,24 @@ export default {
       }
       this.answered = true;
       this.increment(isCorrect);
+    },
+
+    answerClass(index) {
+      let answerClass = "";
+      if (!this.answered && this.selectedIndex === index) {
+        answerClass = "selected";
+      } else if (this.answered && this.correctIndex === index) {
+        answerClass = "correct";
+      } else if (
+        this.answered &&
+        this.selectedIndex === index &&
+        this.correctIndex !== index
+      ) {
+        answerClass = "incorrect";
+      } else {
+        answerClass = "";
+      }
+      return answerClass;
     },
   },
   computed: {
@@ -93,6 +116,13 @@ export default {
 </script>
 
 <style scoped>
+.qb-middle {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .list-group {
   margin-bottom: 20px;
 }
@@ -113,7 +143,7 @@ export default {
   background-color: lightgreen;
 }
 
-.wrong {
+.incorrect {
   background-color: lightsalmon;
 }
 </style>
